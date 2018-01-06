@@ -56,7 +56,8 @@ public class SimpleProducer {
 			
 			// Produce msgs
 			for (int index=0; index<1000000; index++) {
-                String msgKey = "" + index % MAX_KEYS;
+//              String msgKey = "" + index % MAX_KEYS;
+              String msgKey = "" + index;
                 SimpleClass msgToSend = new SimpleClass(msgKey, indexes[index % MAX_KEYS]++, 10);
                 String json = gson.toJson(msgToSend, type);
                 
@@ -65,7 +66,7 @@ public class SimpleProducer {
                 producer.send(record, (metadata, exception) -> 
                 {
                     if (metadata != null) {
-                    	// DO NOTHING
+                    	System.out.println("Sent to " + metadata.toString());
                     } else {
                         exception.printStackTrace();
                     }

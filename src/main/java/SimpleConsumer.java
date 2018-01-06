@@ -18,12 +18,8 @@ import com.google.gson.reflect.TypeToken;
 public class SimpleConsumer {
 
 	static final String ENV_KAFKA_NODES = "KAFKA_NODES";
-	static final String ENV_COUCHBASE_NODES = "COUCHBASE_NODES";
 	static final String ENV_KAFKA_TOPIC = "KAFKA_TOPIC";
 	static final String ENV_KAFKA_GROUP_ID = "KAFKA_GROUP_ID";
-	static final String ENV_STATSD_SERVER = "STATSD_SERVER";
-	static final String ENV_BATCH_SIZE = "BATCH_SIZE";
-	static final String SEPERATOR = "|";
 	
 	static Map<String, String> env = System.getenv();
 	static List<String> envVariables = new ArrayList<String>();
@@ -32,11 +28,8 @@ public class SimpleConsumer {
 
 		// Initialize the list of Environment Variables that must exist
 		envVariables.add(ENV_KAFKA_NODES);
-		envVariables.add(ENV_COUCHBASE_NODES);
 		envVariables.add(ENV_KAFKA_TOPIC);
 		envVariables.add(ENV_KAFKA_GROUP_ID);
-		envVariables.add(ENV_STATSD_SERVER);
-		envVariables.add(ENV_BATCH_SIZE);
 		
 		// Initialize the environment
 		checkEnvVariables();
@@ -111,7 +104,7 @@ public class SimpleConsumer {
 		Properties props = new Properties();
 		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, env.get(ENV_KAFKA_NODES));
 		props.put(ConsumerConfig.GROUP_ID_CONFIG, env.get(ENV_KAFKA_GROUP_ID));
-		props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
+//		props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
 		props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
 		props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
 		props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "30000");
